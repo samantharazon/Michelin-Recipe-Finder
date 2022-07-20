@@ -39,12 +39,11 @@ struct ContentView: View {
                         })//end AsyncImage Placeholder
                     
                     }//end NavigationLink
-                    
 
                 }//end VStack
                 
             }.listStyle(.plain)
-                
+        
                 // save user search text
                 .searchable(text: $searchText)
             
@@ -60,7 +59,7 @@ struct ContentView: View {
                         
                     }//end async
                 }//end onChange
-                
+            
                 .navigationTitle("Search for Recipes")
             
         }//end NavigationView

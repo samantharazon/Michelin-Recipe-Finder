@@ -16,7 +16,7 @@ enum NetworkError2: Error {
 // WebService for second url
 class WebServiceDetails {
 
-    func getRecipeDetails(searchTerm: String) async throws -> [RecipeDetail] {
+    func getRecipeDetails(searchTerm: String) async throws -> RecipeDetail? {
         
         // Create second url
         var components = URLComponents()
@@ -24,7 +24,7 @@ class WebServiceDetails {
         components.host = "api.spoonacular.com"
         components.path = "/recipes/" + searchTerm + "/information"
         components.queryItems = [
-            URLQueryItem(name: "apiKey", value: "c9eeac5d8d9d4e88babb5fa7d083d911"),
+            URLQueryItem(name: "apiKey", value: "477e7e44aa2d48c9b00ca475c4304904"),
         ]
         
         // Get url, Check for error
@@ -41,8 +41,11 @@ class WebServiceDetails {
         }
         
         // Decode Json and return response
-        let RecipeDetailResponse = try? JSONDecoder().decode(RecipeDetailResponse.self, from: data)
-        return RecipeDetailResponse?.recipes ?? []
+        let RecipeDetailResponse = try? JSONDecoder().decode(RecipeDetail.self, from: data)
+        print(RecipeDetailResponse)
+        return RecipeDetailResponse
+        
+        
 
     }//end getRecipes
 }//end WebService

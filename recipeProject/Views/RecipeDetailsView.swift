@@ -15,7 +15,34 @@ struct RecipeDetailsView: View {
     var body: some View {
         
             ScrollView{
-                Text("Fix this")
+                // title
+                Text(recipeDetailsVM.title)
+                
+                // image
+                AsyncImage(url: recipeDetailsVM.image, content: { image in
+                image
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                
+                }, placeholder: {
+                ProgressView()
+                })//end AsyncImage Placeholder
+                
+                // ready in minutes
+                Text("Ready in " + String(recipeDetailsVM.readyInMinutes) + " minutes")
+                    .padding()
+                
+                // summary
+                HStack {
+                    Text(recipeDetailsVM.summary)
+        
+                }.padding()
+                
+                // instructions
+                HStack {
+                    Text(recipeDetailsVM.instructions)
+                }.padding()
+                
             }//end ScrollView
         
             .task {

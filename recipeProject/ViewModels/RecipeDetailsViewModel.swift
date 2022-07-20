@@ -7,20 +7,30 @@
 
 import Foundation
 
-
 @MainActor
 class RecipeDetailsViewModel: ObservableObject {
     
-    @Published var recipes: [RecipeInfoModell] = []
     @Published var title: String = ""
+    @Published var image: URL?
+    @Published var readyInMinutes: Int = 0
+    @Published var summary: String = ""
+    @Published var instructions: String = ""
     
     // get details of a particular recipe based on recipe id
     func searchDetail(recipeId: String) async {
         do {
+            let recipeDetailResponse = try await WebServiceDetails().getRecipeDetails(searchTerm: recipeId)
             
-            let recipes = try await WebServiceDetails().getRecipeDetails(searchTerm: recipeId)
-
-            self.recipes = recipes.map(RecipeInfoModell.init)
+            
+            self.title = recipeDetailResponse!.title
+            self.image = URL(string: recipeDetailResponse!.image)!
+            self.readyInMinutes = recipeDetailResponse!.readyInMinutes
+           
+            let summaryfix = recipeDetailResponse!.summary
+            self.summary = summaryfix.replacingOccurrences(of: "<[^>]+>", with: "", options: .regularExpression, range: nil)
+  
+            let instructionsfix = recipeDetailResponse!.instructions
+            self.instructions = instructionsfix.replacingOccurrences(of: "<[^>]+>", with: "", options: .regularExpression, range: nil)
             
         } catch {
             print(error)
@@ -29,33 +39,3 @@ class RecipeDetailsViewModel: ObservableObject {
     }//end func searchDetail
     
 }//end class RecipeDetailsViewModel
-
-struct RecipeInfoModell {
-
-    let recipe: RecipeDetail
-
-    var id: Int{
-        recipe.id
-    }
-    
-    var title: String{
-        recipe.title
-    }
-//
-//    var readyInMinutes: Int {
-//        recipe.readyInMinutes
-//    }
-//
-    var image: URL? {
-        URL(string: recipe.image)
-    }
-//
-//    var summary: String {
-//        recipe.summary
-//    }
-//
-//    var instructions: String {
-//        recipe.instructions
-//    }
-
-}//end RecipeInfoModell

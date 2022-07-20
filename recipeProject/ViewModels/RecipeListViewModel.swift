@@ -15,9 +15,9 @@ class RecipeListViewModel: ObservableObject {
     // search for a list of recipes via title
     func search(title: String) async {
         do {
-            let recipes = try await WebService().getRecipes(searchTerm: title)
+            let recipeResponse = try await WebService().getRecipes(searchTerm: title)
             
-            self.recipes = recipes.map(RecipeViewModell.init)
+            self.recipes = recipeResponse.map(RecipeViewModell.init)
             
         } catch {
             print(error)
