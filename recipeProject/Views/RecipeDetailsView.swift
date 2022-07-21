@@ -15,36 +15,52 @@ struct RecipeDetailsView: View {
     var body: some View {
         
             ScrollView{
-                // title
-                Text(recipeDetailsVM.title)
-                
-                // image
+    
+                // recipe image
                 AsyncImage(url: recipeDetailsVM.image, content: { image in
                 image
                     .resizable()
                     .aspectRatio(contentMode: .fit)
-                
+                    
                 }, placeholder: {
-                ProgressView()
-                })//end AsyncImage Placeholder
+                    ProgressView()
+                })
+                .frame( height: 300)
                 
-                // ready in minutes
-                Text("Ready in " + String(recipeDetailsVM.readyInMinutes) + " minutes")
-                    .padding()
+                // recipe title
+                Text(recipeDetailsVM.title)
+                    .font(.largeTitle)
+                    .multilineTextAlignment(.center)
                 
-                // summary
-                HStack {
-                    Text(recipeDetailsVM.summary)
-        
+                // recipe ready in minutes
+                if !String(recipeDetailsVM.readyInMinutes).isEmpty {
+                    Text("Ready in " + String(recipeDetailsVM.readyInMinutes) + " minutes")
+                        .padding()
+                }
+                
+                // recipe summary
+                VStack(alignment: .leading, spacing: 20) {
+                    if !recipeDetailsVM.summary.isEmpty {
+                        Text("About the Recipe")
+                            .font(.headline)
+                        
+                        Text(recipeDetailsVM.summary)
+                    }
                 }.padding()
                 
-                // instructions
-                HStack {
-                    Text(recipeDetailsVM.instructions)
+                // recipe instructions
+                VStack(alignment: .leading, spacing: 20) {
+                    if !recipeDetailsVM.instructions.isEmpty {
+                        Text("Steps to Make")
+                            .font(.headline)
+                        
+                        Text(recipeDetailsVM.instructions)
+                    }
                 }.padding()
                 
             }//end ScrollView
-        
+            .ignoresSafeArea(.container, edges: .top)
+            
             .task {
                 await recipeDetailsVM.searchDetail(recipeId: recipeID)
             }//end task

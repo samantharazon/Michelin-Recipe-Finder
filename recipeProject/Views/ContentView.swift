@@ -19,31 +19,37 @@ struct ContentView: View {
             
             List(recipeListVM.recipes, id: \.id) { recipe in
                 
+                //-----------------------------------
                 VStack{
                     
-                    // title of recipe
+                    // recipe title
                     Text(recipe.title)
-                        .font(.headline)
+                        .font(.system(size: 26.0))
                     
                     // navigate to details
                     NavigationLink(destination: RecipeDetailsView(recipeID: String(recipe.id))) {
                        
-                        // display image of recipe
+                        // recipe image 
                         AsyncImage(url: recipe.image, content: { image in
                         image
                             .resizable()
                             .aspectRatio(contentMode: .fit)
-                        
+                            .padding(.bottom, 40)
+
                         }, placeholder: {
                         ProgressView()
                         })//end AsyncImage Placeholder
-                    
+                        
                     }//end NavigationLink
+                    
 
                 }//end VStack
                 
+
+                //-----------------------------------
+                
             }.listStyle(.plain)
-        
+            
                 // save user search text
                 .searchable(text: $searchText)
             
@@ -58,12 +64,22 @@ struct ContentView: View {
                         }//end if-else
                         
                     }//end async
+                    
                 }//end onChange
-            
-                .navigationTitle("Search for Recipes")
+                
+                .navigationTitle("Michellin Delish")
+                
+                .background(
+                        Image("showcasefood")
+                            .resizable()
+                            .scaledToFit()
+                        )
             
         }//end NavigationView
+        
+    
     }//end body
+    
 }//end ContentView
 
 
@@ -71,6 +87,7 @@ struct ContentView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
+        
     }//end previews
 }//end ContentView_Previews
 

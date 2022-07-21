@@ -45,8 +45,4 @@ struct RecipeViewModell {
         URL(string: recipe.image)
     }
     
-    var imageType: String {
-        recipe.imageType
-    }
-    
 }//end RecipeViewModell

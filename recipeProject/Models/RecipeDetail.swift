@@ -6,22 +6,8 @@
 //
 
 import Foundation
-//
-// Recipe Detail Response Model
 
-//struct RecipeDetailResponse: Decodable{
-//    let recipes: [RecipeDetail]
-//
-//    private enum CodingKeys: String, CodingKey {
-//        case recipes = ""
-//    }//end CodingKeys
-//
-//}//end RecipeDetailResponse
-
-// -------------------------
-
-// Recipe Model
-
+// Recipe Detail Model
 struct RecipeDetail: Decodable{
     
     let id: Int
@@ -30,14 +16,4 @@ struct RecipeDetail: Decodable{
     let image: String
     let summary: String
     let instructions: String
-    
-    private enum CodingKeys: String, CodingKey {
-        case id = "id"
-        case title = "title"
-        case readyInMinutes = "readyInMinutes"
-        case image = "image"
-        case summary = "summary"
-        case instructions = "instructions"
-    }//end CodingKeys
-    
 }//end RecipeDetail

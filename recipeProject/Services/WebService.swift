@@ -25,12 +25,14 @@ class WebService {
         components.path = "/recipes/complexSearch"
         components.queryItems = [
             URLQueryItem(name: "query", value: searchTerm),
-            URLQueryItem(name: "apiKey", value: "477e7e44aa2d48c9b00ca475c4304904")
+            URLQueryItem(name: "apiKey", value: "c244520a21634134b45f5a196612cf94")
         ]
         
         /*
          api keys:
             477e7e44aa2d48c9b00ca475c4304904
+            c244520a21634134b45f5a196612cf94
+            c9eeac5d8d9d4e88babb5fa7d083d911
         */
         
         // Get url, Check for error

@@ -24,7 +24,7 @@ class WebServiceDetails {
         components.host = "api.spoonacular.com"
         components.path = "/recipes/" + searchTerm + "/information"
         components.queryItems = [
-            URLQueryItem(name: "apiKey", value: "477e7e44aa2d48c9b00ca475c4304904"),
+            URLQueryItem(name: "apiKey", value: "c244520a21634134b45f5a196612cf94"),
         ]
         
         // Get url, Check for error
@@ -42,7 +42,6 @@ class WebServiceDetails {
         
         // Decode Json and return response
         let RecipeDetailResponse = try? JSONDecoder().decode(RecipeDetail.self, from: data)
-        print(RecipeDetailResponse)
         return RecipeDetailResponse
         
         
