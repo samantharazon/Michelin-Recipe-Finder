@@ -21,7 +21,6 @@ class RecipeDetailsViewModel: ObservableObject {
         do {
             let recipeDetailResponse = try await WebServiceDetails().getRecipeDetails(searchTerm: recipeId)
             
-            
             self.title = recipeDetailResponse!.title
             self.image = URL(string: recipeDetailResponse!.image)!
             self.readyInMinutes = recipeDetailResponse!.readyInMinutes

@@ -21,7 +21,7 @@ struct ContentView: View {
                 
                 //-----------------------------------
                 VStack{
-                    
+
                     // recipe title
                     Text(recipe.title)
                         .font(.system(size: 26.0))
@@ -67,8 +67,8 @@ struct ContentView: View {
                     
                 }//end onChange
                 
-                .navigationTitle("Michellin Delish")
-                
+                .navigationTitle("Michelin Delish")
+            
                 .background(
                         Image("showcasefood")
                             .resizable()
@@ -77,7 +77,6 @@ struct ContentView: View {
             
         }//end NavigationView
         
-    
     }//end body
     
 }//end ContentView
